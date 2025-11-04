@@ -7,7 +7,7 @@ def home():
 <!DOCTYPE html>
 <html>
 <head>
-<title>DevOps CI/CD Demo 🚀</title>
+<title>DevOps CI/CD Demo "showcase-1" 🚀</title>
 <style>
     body {
         font-family: Arial, sans-serif;
