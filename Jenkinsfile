@@ -4,31 +4,38 @@ pipeline {
     stages {
         stage('Checkout Code') {
             steps {
-                echo "Pulling code from GitHub"
-                checkout scm
+                git 'https://github.com/Aarzoo321/project_devops.git'
             }
         }
 
         stage('Build Docker Image') {
             steps {
-                echo "Building Docker Image"
-                sh 'docker build -t devops-app .'
+                script {
+                    docker.build("devops-app")
+                }
             }
         }
 
         stage('Run Container') {
             steps {
-                echo "Running Docker Container"
-                sh 'docker run -d -p 5000:5000 --name devops-container devops-app'
+                script {
+                    echo "Stopping old container if running..."
+                    sh 'docker stop devops-container || true'
+                    sh 'docker rm devops-container || true'
+
+                    echo "Starting new container..."
+                    sh 'docker run -d -p 5001:5001 --name devops-container devops-app'
+                }
             }
         }
     }
 
     post {
-        always {
-            echo "Cleaning up"
-            sh 'docker stop devops-container || true'
-            sh 'docker rm devops-container || true'
+        success {
+            echo "✅ Pipeline completed successfully & container started on port 5001"
+        }
+        failure {
+            echo "❌ Build failed. Please check logs."
         }
     }
 }
