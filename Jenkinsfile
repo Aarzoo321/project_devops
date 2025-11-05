@@ -1,12 +1,17 @@
 pipeline {
     agent any
 
+    options {
+        skipDefaultCheckout()
+    }
+
     stages {
         stage('Checkout Code') {
             steps {
-                git 'https://github.com/Aarzoo321/project_devops.git'
+                git branch: 'main', url: 'https://github.com/Aarzoo321/project_devops.git'
             }
         }
+
 
         stage('Build Docker Image') {
             steps {
