@@ -63,7 +63,7 @@ setInterval(showTime, 1000);
 </head>
 <body>
     <div id="box">
-        <h1>demo demo demo by Aarzoo ✅</h1>
+        <h1>demo live updation. ✅</h1>
         <p>Your pipeline is running smoothly</p>
         <p>Docker + Jenkins + GitHub ✅</p>
 
